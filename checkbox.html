@@ -1,0 +1,60 @@
+<style>
+  .form__checkbox > input {
+    display: none;
+  }
+
+  .form__checkbox-text {
+    font-size: 12px;
+  }
+
+  .form__checkbox {
+    user-select: none;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .form__checkbox + .form__checkbox {
+    margin-left: 12px;
+  }
+
+  .form__checkbox input:checked ~ .form__checkbox-checker::before {
+    content: 'V';
+    color: red;
+  }
+
+  .form__checkbox-checker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: 1px dotted #000;
+  }
+
+  .form__group {
+    display: flex;
+  }
+</style>
+<div class="form__control">
+  <label for="sale" class="from__label label">
+    <span class="label__text">Sale</span>
+  </label>
+  <div class="form__group">
+    <label class="form__checkbox" tabindex="0">
+      <span class="form__checkbox-text">One</span>
+      <input id="sale" type="checkbox" name="sale" checked="checked" value="asdasd">
+      <span class="form__checkbox-checker"></span>
+    </label>
+    <label class="form__checkbox" tabindex="0">
+      <span class="form__checkbox-text">Fore</span>
+      <input name="sale" type="checkbox">
+      <span class="form__checkbox-checker"></span>
+    </label>
+    <label class="form__checkbox" tabindex="0">
+      <span class="form__checkbox-text">Two</span>
+      <input name="sale" type="checkbox">
+      <span class="form__checkbox-checker"></span>
+    </label>
+  </div>
+</div>

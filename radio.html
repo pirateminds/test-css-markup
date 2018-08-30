@@ -1,0 +1,62 @@
+<style>
+    .form__radio > input {
+      display: none;
+    }
+
+    .form__radio-text {
+      font-size: 12px;
+    }
+
+    .form__radio {
+      user-select: none;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .form__radio + .form__radio {
+      margin-left: 12px;
+    }
+
+    .form__radio input:checked ~ .form__radio-checker::before {
+      content: '·';
+      font-size: 30px;
+      color: red;
+    }
+
+    .form__radio-checker {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px dotted #000;
+    }
+
+    .form__group {
+      display: flex;
+    }
+  </style>
+  <div class="form__control">
+    <label for="sale" class="from__label label">
+      <span class="label__text">Super sale</span>
+    </label>
+    <div class="form__group">
+      <label class="form__radio" tabindex="0">
+        <span class="form__radio-text">One</span>
+        <input id="sale" type="radio" name="sale" value="asdasd">
+        <span class="form__radio-checker"></span>
+      </label>
+      <label class="form__radio" tabindex="0">
+        <span class="form__radio-text">Fore</span>
+        <input name="sale" type="radio">
+        <span class="form__radio-checker"></span>
+      </label>
+      <label class="form__radio" tabindex="0">
+        <span class="form__radio-text">Two</span>
+        <input name="sale" type="radio">
+        <span class="form__radio-checker"></span>
+      </label>
+    </div>
+  </div>

@@ -10,7 +10,48 @@
   <link href="public/theme.css" rel="stylesheet" type="text/css">
   <!-- верхние настроечки не трогаем -->
   <!-- <script src="./src/loader.js"></script> -->
-  <link rel="import" href="./src/input.html">
+  <link rel="import" data-value="input" href="./src/input.html">
+  <link rel="import" data-value="select" href="./src/select.html">
+  <link rel="import" data-value="checkbox" href="./src/checkbox.html">
+  <link rel="import" data-value="toggle" href="./src/toggle.html">
+  <link rel="import" data-value="radio" href="./src/radio.html">
+  <link rel="import" data-value="slider" href="./src/slider.html">
+  <link rel="import" data-value="file" href="./src/file.html">
+  <style>
+      .form__control + .form__control {
+        margin-top: 24px;
+      }
+
+      .form__label {
+        display: block;
+      }
+
+      .label {
+        line-height: 1;
+      }
+
+      .label__text {
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 1;
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      :focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(100, 73, 255, 0.5);
+      }
+
+      input, textarea, select, button {
+        font-family: 'Gloria Hallelujah', sans-serif !important;
+      }
+
+      input:disabled {
+        border-color: #ddd;
+        background: #ddd;
+      }
+    </style>
 </head>
 
 <body>
@@ -21,95 +62,107 @@
     </p>
   </article>
   <form class="awesome-form">
-    <fieldset>
+    <fieldset disabled="disabled" >
       <legend>Awesome form</legend>
 
       <div id="container"></div>
 
       <script>
-        container.appendChild(document.querySelector('link[rel="import"]').import.querySelector('div'));
+        container.appendChild(document.querySelector('[data-value="input"]').import.querySelector('.form__control'));
+        container.appendChild(document.querySelector('[data-value="select"]').import.querySelector('.form__control'));
+        container.appendChild(document.querySelector('[data-value="checkbox"]').import.querySelector('.form__control'));
+        container.appendChild(document.querySelector('[data-value="radio"]').import.querySelector('.form__control'));
+        container.appendChild(document.querySelector('[data-value="toggle"]').import.querySelector('.form__control'));
+        container.appendChild(document.querySelector('[data-value="slider"]').import.querySelector('.form__control'));
+        container.appendChild(document.querySelector('[data-value="file"]').import.querySelector('.form__control'));
         // loader('./src/input.html', function(xhr) {
         //   container.innerHTML = xhr.response;
         // });
       </script>
+
+      <!-- Select -->
+      <script>
+          var x, i, j, selElmnt, a, b, c;
+          /*look for any elements with the class "custom-select":*/
+          x = document.getElementsByClassName("form__label--select");
+          for (i = 0; i < x.length; i++) {
+            selElmnt = x[i].getElementsByTagName("select")[0];
+            /*for each element, create a new DIV that will act as the selected item:*/
+            a = document.createElement("DIV");
+            a.setAttribute("class", "select-selected");
+            a.setAttribute("tabindex", "0");
+            a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+            x[i].appendChild(a);
+            /*for each element, create a new DIV that will contain the option list:*/
+            b = document.createElement("DIV");
+            b.setAttribute("class", "select-items select-hide");
+            for (j = 0; j < selElmnt.length; j++) {
+              /*for each option in the original select element,
+              create a new DIV that will act as an option item:*/
+              c = document.createElement("DIV");
+              c.innerHTML = selElmnt.options[j].innerHTML;
+              c.addEventListener("click", function (e) {
+                /*when an item is clicked, update the original select box,
+                and the selected item:*/
+                var y, i, k, s, h;
+                s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                h = this.parentNode.previousSibling;
+                for (i = 0; i < s.length; i++) {
+                  if (s.options[i].innerHTML == this.innerHTML) {
+                    s.selectedIndex = i;
+                    h.innerHTML = this.innerHTML;
+                    y = this.parentNode.getElementsByClassName("same-as-selected");
+                    for (k = 0; k < y.length; k++) {
+                      y[k].removeAttribute("class");
+                    }
+                    this.setAttribute("class", "same-as-selected");
+                    break;
+                  }
+                }
+                h.click();
+              });
+              b.appendChild(c);
+            }
+            x[i].appendChild(b);
+            a.addEventListener("click", function (e) {
+              /*when the select box is clicked, close any other select boxes,
+              and open/close the current select box:*/
+              e.stopPropagation();
+              closeAllSelect(this);
+              this.nextSibling.classList.toggle("select-hide");
+              this.classList.toggle("select-arrow-active");
+            });
+          }
+
+          function closeAllSelect(elmnt) {
+            /*a function that will close all select boxes in the document,
+            except the current select box:*/
+            var x, y, i, arrNo = [];
+            x = document.getElementsByClassName("select-items");
+            y = document.getElementsByClassName("select-selected");
+            for (i = 0; i < y.length; i++) {
+              if (elmnt == y[i]) {
+                arrNo.push(i)
+              } else {
+                y[i].classList.remove("select-arrow-active");
+              }
+            }
+            // for (i = 0; i < x.length; i++) {
+            //   if (arrNo.indexOf(i)) {
+            //     x[i].classList.add("select-hide");
+            //   }
+            // }
+          }
+          /*if the user clicks anywhere outside the select box,
+          then close all select boxes:*/
+          document.addEventListener("click", closeAllSelect);
+
+        </script>
 <!--
-      <div>
-        <label>
-          <span>Select</span>
-          <select>
-            <option value="0">Select car:</option>
-            <option value="1">Audi</option>
-            <option value="2">BMW</option>
-            <option value="3">Citroen</option>
-            <option value="4">Ford</option>
-            <option value="5">Honda</option>
-            <option value="6">Jaguar</option>
-            <option value="7">Land Rover</option>
-            <option value="8">Mercedes</option>
-            <option value="9">Mini</option>
-            <option value="10">Nissan</option>
-            <option value="11">Toyota</option>
-            <option value="12">Volvo</option>
-          </select>
-        </label>
-      </div>
-      <div>
-        <label>
-          <span>One</span>
-          <input type="checkbox" checked="checked">
-          <span></span>
-        </label>
-        <label>
-          <span>Fore</span>
-          <input type="checkbox">
-          <span></span>
-        </label>
-        <label>
-          <span>Two</span>
-          <input type="checkbox">
-          <span></span>
-        </label>
-      </div>
-      <div>
-        <label>
-          <span>One</span>
-          <input type="radio" checked="checked">
-          <span></span>
-        </label>
-        <label>
-          <span>Fore</span>
-          <input type="radio">
-          <span></span>
-        </label>
-        <label>
-          <span>Two</span>
-          <input type="radio">
-          <span></span>
-        </label>
-      </div>
       <div>
         <label>
           <span>File picker</span>
           <input type="file" id="avatar" name="avatar" accept="image/png,image/jpeg" />
-        </label>
-      </div>
-      <div>
-        <label>
-          <span>Slider</span>
-          <input type="range" min="1" max="100" value="50">
-        </label>
-      </div>
-      <div>
-        <label>
-          <span>Textarea</span>
-          <textarea rows="3"></textarea>
-        </label>
-      </div>
-      <div>
-        <label>
-          <span>Toggle</span>
-          <input type="checkbox">
-          <span></span>
         </label>
       </div>
       <div>

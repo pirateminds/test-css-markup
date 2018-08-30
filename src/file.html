@@ -1,0 +1,64 @@
+<style>
+  .form__file input {
+    display: none;
+  }
+
+  .form__file {
+    border: 1px dotted #000;
+    background: white;
+    color: red;
+    height: 42px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+  }
+
+  .form__files {
+    border: 1px dotted rgba(0, 0, 0, 0.274);
+    padding: 32px;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.274);
+    display: none;
+  }
+
+  .form__files:not(:empty) {
+    display: block;
+  }
+
+  .form__file--drag {
+    border-color: green;
+  }
+</style>
+<script>
+  function handleFiles(files) {
+    var arr = Array.from(files);
+    document.querySelector('.form__files').innerHTML = arr.map(e=> e.name).join(', ');
+  }
+
+  function onDrop(event) {
+    event.preventDefault();
+    this.classList.addClass('.form__file--drag');
+  }
+
+  document.addEventListener("drop", function( event ) {
+      // prevent default action (open as link for some elements)
+      event.preventDefault();
+      // move dragged elem to the selected drop target
+      if ( event.target.className == "dropzone" ) {
+          // event.target.style.background = "";
+          // dragged.parentNode.removeChild( dragged );
+          // event.target.appendChild( dragged );
+      }
+
+  }, false);
+</script>
+<div class="form__control">
+  <label class="form__label label">
+    <span class="label__text">File picker</span>
+    <div tabindex="0" class="form__file" ondrop="onDrop(event); return false;">
+      <input type="file" id="avatar" multiple webkitdirectory name="avatar" accept="image/png,image/jpeg"  onchange="handleFiles(this.files)" />
+      <span>File</span>
+    </div>
+    <div class="form__files"></div>
+  </label>
+</div>

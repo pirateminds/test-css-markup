@@ -1,0 +1,56 @@
+<style>
+    .form__toggle > input {
+      display: none;
+    }
+
+    .form__toggle-text {
+      font-size: 12px;
+    }
+
+    .form__toggle {
+      user-select: none;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .form__toggle + .form__toggle {
+      margin-left: 12px;
+    }
+
+    .form__toggle  .form__toggle-checker::before {
+      content: 'V';
+      padding: 0 12px;
+      color: red;
+      transition: all .3s ease-in-out;
+      transform: translateX(24px);
+    }
+
+    .form__toggle input:checked ~ .form__toggle-checker::before {
+      transform: translateX(-24px);
+    }
+
+    .form__toggle-checker {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 24px;
+      border: 1px dotted #000;
+    }
+
+    .form__group {
+      display: flex;
+    }
+  </style>
+  <div class="form__control">
+    <label for="sale" class="from__label label">
+      <span class="label__text">Toggle</span>
+    </label>
+    <div class="form__group">
+      <label class="form__toggle" tabindex="0">
+        <input id="sale" type="checkbox" name="sale" checked="checked" value="asdasd">
+        <span class="form__toggle-checker"></span>
+      </label>
+    </div>
+  </div>

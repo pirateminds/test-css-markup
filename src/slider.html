@@ -1,0 +1,45 @@
+<style>
+
+  /* The slider itself */
+.form__slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 24px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.form__slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.form__slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 24px; /* Set a specific slider handle width */
+    height: 24px; /* Slider handle height */
+    background: white; /* Green background */
+    border: 1px dotted #000000;
+    cursor: pointer; /* Cursor on hover */
+}
+
+.form__slider::-moz-range-thumb {
+  width: 24px; /* Set a specific slider handle width */
+  height: 24px; /* Slider handle height */
+  background: white; /* Green background */
+  border: 1px dotted #000000;
+  cursor: pointer; /* Cursor on hover */
+}
+</style>
+<div class="form__control">
+  <label class="form__label label">
+    <span class="label__text">Slider</span>
+    <input class="form__slider" type="range" min="1" max="100" value="50">
+  </label>
+</div>
