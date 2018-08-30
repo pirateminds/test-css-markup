@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Awesome form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preload" href="public/font.woff2" as="font">
+  <link href="public/theme.css" rel="stylesheet" type="text/css">
+  <!-- верхние настроечки не трогаем -->
+</head>
+
+<body>
+  <article>
+    <h1>Welcome on form</h1>
+    <p>
+      Today we make it looks wired
+    </p>
+  </article>
+  <form class="awesome-form">
+    <fieldset>
+      <legend>Awesome form</legend>
+      <div>
+            <label>
+              <span>Input</span>
+              <input type="text" />
+            </label>
+      </div>
+      <div>
+        <label>
+          <span>Select</span>
+          <select>
+            <option value="0">Select car:</option>
+            <option value="1">Audi</option>
+            <option value="2">BMW</option>
+            <option value="3">Citroen</option>
+            <option value="4">Ford</option>
+            <option value="5">Honda</option>
+            <option value="6">Jaguar</option>
+            <option value="7">Land Rover</option>
+            <option value="8">Mercedes</option>
+            <option value="9">Mini</option>
+            <option value="10">Nissan</option>
+            <option value="11">Toyota</option>
+            <option value="12">Volvo</option>
+          </select>
+        </label>
+      </div>
+      <div>
+        <label>
+          <span>One</span>
+          <input type="checkbox" checked="checked">
+          <span></span>
+        </label>
+        <label>
+          <span>Fore</span>
+          <input type="checkbox">
+          <span></span>
+        </label>
+        <label>
+          <span>Two</span>
+          <input type="checkbox">
+          <span></span>
+        </label>
+      </div>
+      <div>
+        <label>
+          <span>One</span>
+          <input type="radio" checked="checked">
+          <span></span>
+        </label>
+        <label>
+          <span>Fore</span>
+          <input type="radio">
+          <span></span>
+        </label>
+        <label>
+          <span>Two</span>
+          <input type="radio">
+          <span></span>
+        </label>
+      </div>
+      <div>
+          <label>
+                <span>File picker</span>
+                <input type="file"
+                    id="avatar" name="avatar"
+                    accept="image/png,image/jpeg" />
+          </label>
+      </div>
+      <div>
+          <label>
+                <span>Slider</span>
+                <input type="range" min="1" max="100" value="50">
+          </label>
+      </div>
+      <div>
+          <label>
+                <span>Textarea</span>
+                <textarea rows="3"></textarea>
+          </label>
+      </div>
+      <div>
+          <label>
+                <span>Toggle</span>
+                <input type="checkbox">
+                <span></span>
+          </label>
+      </div>
+      <div>
+          <a href="#">Cancel Link</a><button>Submit</button>
+      </div>
+    </fieldset>
+  </form>
+</body>
+
+</html>
